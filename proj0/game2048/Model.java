@@ -125,23 +125,24 @@ public class Model extends Observable {
                             this.score+=(tile(c,k).value());
                             bottom=k-1;
                             changed=true;
-                            break;
-                        }
-                        else if(tile(c,k)!=null) {//碰到值，但是不可合并
-                            if (k - r > 1) {
-                                board.move(c,k-1, tile(c, r));
-                                changed = true;
-                                bottom=k;
-                            }
                         }
                         else if(tile(c,k)==null&&k==bottom){
                             if (k - r > 0) {
                                 board.move(c, k, tile(c, r));
                                 changed = true;
-                                bottom=k;
-                                break;
                             }
                         }
+                        else if(tile(c,k)!=null&&tile(c,k).value()!=tile(c,r).value()) {//碰到值，但是不可合并
+                            if (k - r > 1) {
+                                board.move(c,k-1, tile(c, r));
+                                changed = true;
+                                bottom=k-1;
+                            }
+                            else{
+                                bottom--;
+                            }
+                        }
+
                     }
                 }
 
@@ -149,7 +150,7 @@ public class Model extends Observable {
         }
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
-        board.setViewingPerspective(side.NORTH);
+        board.setViewingPerspective(Side.NORTH);
         //System.out.print(changed);
         checkGameOver();
         if (changed) {
