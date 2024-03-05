@@ -53,13 +53,13 @@ public class IntListExercises {
     public static boolean firstDigitEqualsLastDigit(int x) {
         int lastDigit = x % 10;
         if(lastDigit==0&&x!=0){
-            return false;
+            return false;//是一个整十数
         }
         while (x > 10) {
             x = x / 10;
         }
 
-        int firstDigit = x % 10;
+        int firstDigit = x % 10;//如果是个位数，二者必然相等
         return firstDigit == lastDigit;
     }
 
