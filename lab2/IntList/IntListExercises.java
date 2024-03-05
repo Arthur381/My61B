@@ -52,10 +52,10 @@ public class IntListExercises {
      */
     public static boolean firstDigitEqualsLastDigit(int x) {
         int lastDigit = x % 10;
-        if(lastDigit==0&&x!=0){
+        if(lastDigit==0&&x!=0){//10 is not fit, but 1001 should fit the rule.
             return false;//是一个整十数
         }
-        while (x > 10) {
+        while (x >= 10) {
             x = x / 10;
         }
 
